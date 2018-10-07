@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html style="height: 100vh; width: 100vw;">
+	<head>
+		<meta charset="utf-8"/>
+
+		<!--<script src="//webglfundamentals.org/webgl/resources/webgl-utils.js"></script>
+		<script src="http://localhost/thisisasite/wp-content/myScripts/jquery-3.3.1.min.js"></script>-->
+		<script src="Engine/gl-matrix.js"></script>
+		<script src="Engine/localShaders.js"></script>
+		<script src="Engine/math.js"></script>
+		<script src="Engine/utilities.js"></script>
+		<script src="Engine/object.js"></script>
+		<script src="Engine/sprite.js"></script>
+		<script src="Engine/input.js"></script>
+		<script src="Engine/interface.js"></script>
+		<script src="Engine/shader.js"></script>
+		<script src="Engine/render.js"></script>
+		<script src="Engine/update.js"></script>
+		<script src="Engine/collision.js"></script>
+		<script src="Engine/mesh.js"></script>
+		<script src="Engine/animation.js"></script>
+		<script src="Engine/defines.js"></script>
+		<script src="Engine/particle.js"></script>
+		<script src="Engine/effect.js"></script>
+		<script src="Engine/audio.js"></script>
+		<script src="Engine/Tyamoe2dCollisionFunctions.js"></script>
+		<script src="Engine/Tyamoe2dEffectorFunctions.js"></script>
+		<script src="Engine/Tyamoe2dInitFunctions.js"></script>
+		<script src="Engine/Tyamoe2dInteractFunctions.js"></script>
+		<script src="Engine/Tyamoe2dUpdateFunctions.js"></script>
+
+		<script src="breaker.js"></script>
+		
+		<script src="breaker/main.js"></script>
+		<script src="breaker/level.js"></script>
+		<script src="breaker/globals.js"></script>
+
+		<script src="breaker/interactFunctions.js"></script>
+		<script src="breaker/effectorFunctions.js"></script>
+		<script src="breaker/collisionFunctions.js"></script>
+		<script src="breaker/initFunctions.js"></script>
+		<script src="breaker/updateFunctions.js"></script>
+
+		<script id="2d-vertex-shader" type="x-shader/x-vertex">
+			attribute vec2 a_position;
+
+			uniform mat3 u_matrix;
+
+			void main() 
+			{
+
+			   gl_Position = vec4(u_matrix * vec3(a_position, 1), 1);
+			}
+		</script>
+		<!-- fragment shader -->
+		<script id="2d-fragment-shader" type="x-shader/x-fragment">
+			precision mediump float;
+
+			// our texture
+			uniform vec4 u_color;
+
+			void main() 
+			{
+			   gl_FragColor = u_color;
+			}
+		</script>
+	</head>
+
+	<body style="margin: 0 !important; height: 100vh; width: 100vw;">
+		<div id="background" style="height: 100vh; width: 100vw; background: grey;"></div>
+	</body>
+</html>
