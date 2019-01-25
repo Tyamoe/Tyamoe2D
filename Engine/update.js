@@ -3,13 +3,13 @@ window.requestAnimFrame = (function()
 	return (
 		window.requestAnimationFrame ||
 		window.webkitRequestAnimationFrame ||
-   	window.mozRequestAnimationFrame ||
-  	window.oRequestAnimationFrame ||
-   	window.msRequestAnimationFrame ||
-   	function(callback, element) 
-   	{
+   		window.mozRequestAnimationFrame ||
+  		window.oRequestAnimationFrame ||
+   		window.msRequestAnimationFrame ||
+   		function(callback, element) 
+   		{
 			return window.setTimeout(callback, 1000 / 30);
-   	}
+   		}
 	);
 })();
 
@@ -24,21 +24,21 @@ function tick()
 
 	resize();
 	
-  dt = getFrameRate();
+  	dt = getFrameRate();
 
-  ui();
+  	ui();
 
-  //if(1.0 / dt < 57)
-  //console.log("FPS: " + 1.0 / dt);
+  	//if(1.0 / dt < 57)
+  		//console.log("FPS: " + 1.0 / dt);
 
 	if(manager.isRunning)
 	{
-  	animate();
-  	update();
-  	effect();
-    process();
-    audio();
-    collide();
+  		animate();
+  		update();
+  		effect();
+    	process();
+    	audio();
+    	collide();
 	}
 
 	if(manager.isOutdated)
@@ -77,7 +77,7 @@ function process()
 
 			if(obj.collider != null)
 			{
-				if(obj.collider.isColliding && !vec2.exactEquals(obj.transform.oldPos, obj.transform.pos))//obj.physics.vel[0] + obj.physics.vel[1] != 0)
+				if(obj.collider.isColliding && !vec2.exactEquals(obj.transform.oldPos, obj.transform.pos))
 				{
 					obj.collider.isColliding = false;
 					continue;

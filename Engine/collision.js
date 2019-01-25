@@ -155,11 +155,6 @@ function CircleCircleCollision(obj1, obj2)
 {
 	var radius = (obj1.collider.radius) + (obj2.collider.radius);
 
-	//var dis = vec2.distance(obj1.transform.pos, obj2.transform.pos);
-
-	//console.log("Radius: " + radius);
-	//console.log("Dis: " + dis);
-
 	if(intersectCircleCircle(obj1.transform.pos, obj2.transform.pos, radius))
 	{
 		obj1.collider.collision.collisionUpdate(1, null, obj2.name);
@@ -201,7 +196,6 @@ function CircleLineCollision(obj1, obj2)
 		obj1.collider.collision.collisionUpdate(null, null, obj2.name);
 		obj2.collider.collision.collisionUpdate(null, null, obj1.name);
 
-		//vec2.set(obj1.physics.vel, 0, 0);
 		if(obj1.physics != null)
 		{	
 			obj1.collider.isColliding = true;
@@ -234,8 +228,6 @@ function CircleLineCollision(obj1, obj2)
 
 			obj1.collider.collision.collisionUpdate(1, normal, obj2.name);
 			obj2.collider.collision.collisionUpdate(1, normal, obj1.name);
-
-			//console.log("2132Velocity " + obj1.physics.vel);
 
 			if(obj1.physics != null)
 			{	
@@ -288,8 +280,6 @@ function intersectCircleLine(coll, circle, radiusSqr, normall)
 
 				if (r2 <= radiusSqr)
 				{
-					//coll.collision = new Collision(t, i, normall);
-
 					circle.collision.collisionUpdate(t, normall, null);
 					coll.collision.collisionUpdate(t, normall, null);
 					return true;
@@ -315,43 +305,31 @@ function LineLineCollision(obj1, obj2)
 
 	if (Math.abs(dx) <= w && Math.abs(dy) <= h)
 	{
-	  /* collision! */
-	  var wy = w * dy;
-	  var hx = h * dx;
+		var wy = w * dy;
+	  	var hx = h * dx;
 
 		if (wy > hx)
-	  {
-	    if (wy > -hx)
-	    {
-	      /* top */
-	      vec2.copy(normal, VectorUP);
-	    }
-	    else
-	    {
-	      /* left */
-	      vec2.copy(normal, VectorLEFT);
-	    }
-	  }
-	  else
-	  {
-	    if (wy > -hx)
-	    {
-	      /* right */
-	      vec2.copy(normal, VectorRIGHT);
-	    }
-	    else
-	    {
-	      /* bottom */
-	      vec2.copy(normal, VectorDOWN);
-	    }
-	  }
-
-		/*
-		vec2.subtract(vector1, hit2.pos, hit1.pos);
-
-		vec2.set(normal, vector1[1], -vector1[0]);
-		vec2.normalize(normal, normal);
-		*/
+	  	{
+		    if (wy > -hx)
+		    {
+		      vec2.copy(normal, VectorUP);
+		    }
+		    else
+		    {
+		      vec2.copy(normal, VectorLEFT);
+		    }
+	  	}
+	  	else
+	  	{
+		    if (wy > -hx)
+		    {
+		      vec2.copy(normal, VectorRIGHT);
+		    }
+		    else
+		    {
+		      vec2.copy(normal, VectorDOWN);
+		    }
+	  	}
 
 		if(obj1.physics != null)
 		{	
@@ -383,7 +361,7 @@ function updateCollider(obj)
 
 	if(obj.collider.type == ColliderType.LINE)
 	{
-		//Init Line segments
+		//Line segments
 
 		var xoffset = (obj.collider.hitbox.scale[0] / 2) + 0.1;
 		var yoffset = (obj.collider.hitbox.scale[1] / 2) + 0.1;

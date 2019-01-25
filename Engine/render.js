@@ -1,32 +1,30 @@
 var currProg = null;
-var ccc = 0;
+
 function render()
 {
-  gl.clear(gl.COLOR_BUFFER_BIT);
+	gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  	gl.clear(gl.COLOR_BUFFER_BIT);
 
-  for(var i = 0; i < GameObjects.length; i++)
-  {
-  	var obj = GameObjects[i];
+  	for(var i = 0; i < GameObjects.length; i++)
+  	{
+  		var obj = GameObjects[i];
 
-  	if(!obj.enabled || obj.mesh == null)
+  		if(!obj.enabled || obj.mesh == null)
 		{
 			continue;
 		}
 
 		if(obj.particles != null && obj.particles.emit && obj.particles.layer == LayerStyle.BEHIND)
 		{
-			//console.log("BEHIND");
 			renderParticles(obj.particles);
 		}
 
 		if(currProg != shaders[obj.shader])
 		{
-			//if(currProg!=null)
-				//console.log(currProg.name + " changing to " + shaders[obj.shader].name);
 			currProg = shaders[obj.shader];
 		
-  		gl.useProgram(currProg.program);
-  		setGlobalUniforms(currProg.program);
+  			gl.useProgram(currProg.program);
+  			setGlobalUniforms(currProg.program);
 			ccc++;
 		}
 
@@ -52,17 +50,13 @@ function render()
 
 			manager.boundTexture = obj.sprite.texture;
 		}
-		//console.log("obj: " + obj.name);
 
-		//DEBUG -- This is the draw call that causes the error
 		gl.drawElements(gl.TRIANGLES, obj.mesh.indexBuffer.length, gl.UNSIGNED_SHORT, 0);
 		gl.bindVertexArray(null);
+
 		if(obj.particles != null && obj.particles.emit && obj.particles.layer == LayerStyle.INFRONT)
 		{
-			//console.log("INFRONT");
 			renderParticles(obj.particles);
 		}
   }
-  //console.log("Shader: " + ccc);
-  ccc = 0;
 }

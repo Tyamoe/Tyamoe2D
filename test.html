@@ -3,6 +3,8 @@
 	<head>
 		<meta charset="utf-8"/>
 
+		<!--<script src="//webglfundamentals.org/webgl/resources/webgl-utils.js"></script>
+		<script src="http://localhost/thisisasite/wp-content/myScripts/jquery-3.3.1.min.js"></script>-->
 		<script src="Engine/gl-matrix.js"></script>
 		<script src="Engine/localShaders.js"></script>
 		<script src="Engine/math.js"></script>
@@ -27,19 +29,42 @@
 		<script src="Engine/Tyamoe2dInteractFunctions.js"></script>
 		<script src="Engine/Tyamoe2dUpdateFunctions.js"></script>
 
-		<script src="rampage.js"></script>
+		<script src="test.js"></script>
 
-		<script src="rampage/main.js"></script>
-		<script src="rampage/level.js"></script>
-		<script src="rampage/batch.js"></script>
-		<script src="rampage/globals.js"></script>
+		<script src="test/main.js"></script>
+		<script src="test/level.js"></script>
+		<script src="test/batch.js"></script>
+		<script src="test/globals.js"></script>
 
-		<script src="rampage/collisionFunctions.js"></script>
-		<script src="rampage/initFunctions.js"></script>
-		<script src="rampage/updateFunctions.js"></script>
-		<script src="rampage/interactFunctions.js"></script>
-		<script src="rampage/effectorFunctions.js"></script>
+		<script src="test/collisionFunctions.js"></script>
+		<script src="test/initFunctions.js"></script>
+		<script src="test/updateFunctions.js"></script>
+		<script src="test/interactFunctions.js"></script>
+		<script src="test/effectorFunctions.js"></script>
 
+		<script id="2d-vertex-shader" type="x-shader/x-vertex">
+			attribute vec2 a_position;
+
+			uniform mat3 u_matrix;
+
+			void main() 
+			{
+
+			   gl_Position = vec4(u_matrix * vec3(a_position, 1), 1);
+			}
+		</script>
+		<!-- fragment shader -->
+		<script id="2d-fragment-shader" type="x-shader/x-fragment">
+			precision mediump float;
+
+			// our texture
+			uniform vec4 u_color;
+
+			void main() 
+			{
+			   gl_FragColor = u_color;
+			}
+		</script>
 	</head>
 
 	<body style="margin: 0 !important; height: 100vh; width: 100vw;">

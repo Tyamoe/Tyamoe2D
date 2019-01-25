@@ -1,12 +1,15 @@
-var updateFuncEmpty = function(obj)
-{
-
-}
+var updateFuncEmpty = function(obj) { }
 
 var updateFuncFollowPlayerCamera = function()
 {
-	vec3.set(manager.camera.Pos, player.transform.pos[0] * manager.camera.zoom[0], player.transform.pos[1] * manager.camera.zoom[1], 0);
-
+	if(player != null)
+	{
+		vec3.set(manager.camera.Pos, player.transform.pos[0] * manager.camera.zoom[0], player.transform.pos[1] * manager.camera.zoom[1], 0);
+	}
+	else
+	{
+		vec3.set(manager.camera.Pos, 0, 0, 0);
+	}
 	var temp = vec3.create();
 	vec3.add(temp, manager.camera.Pos, manager.camera.Front);
 	mat4.lookAt(manager.camera.view, manager.camera.Pos, temp, manager.camera.Up);

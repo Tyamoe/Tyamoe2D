@@ -5,8 +5,8 @@ var GameManager = function()
 
 	this.toggleRunning = function()
 	{
-    this.isRunning = (this.isRunning) ? false : true;
-  }
+    	this.isRunning = (this.isRunning) ? false : true;
+  	}
 
 	this.camera = null;
 	this.mouse = null;
@@ -27,13 +27,13 @@ var Camera = function()
 	this.rotation = 0.0;
 
 	this.Pos = vec3.create();
-  this.Front = vec3.create();
-  this.Up = vec3.create();
+  	this.Front = vec3.create();
+  	this.Up = vec3.create();
 
-  this.zoom = vec2.create();
+  	this.zoom = vec2.create();
 	vec2.set(this.zoom, 0.13, 0.13);
 
-  this.view = mat4.create();
+  	this.view = mat4.create();
 	this.projMatrix = mat4.create();
 }
 
@@ -49,22 +49,22 @@ var GameObject = function(name, ...input)
 
 	this.parent = (input.length > 2) ? input[2] : null;
 
-	this.transform = null;	//*****
+	this.transform = null;		//*****
 	this.sprite = null;			//*****
-	this.animation = null;	//****
+	this.animation = null;		//****
 	this.physics = null;		//*****
 	this.collider = null;		//*****
-	this.mesh = null;				//*****
+	this.mesh = null;			//*****
 	this.behavior = null;		//*****
 	this.stats = null;			//***
 	this.light = null;			//**
-	this.particles = null;	//***
+	this.particles = null;		//***
 	this.material = null;		//****
 	this.occluder = null;		//*
 
 	this.interact = null;		//*****
 	this.button = null;			//****
-	this.text = null;			  //***
+	this.text = null;			//***
 
 	this.audio = null;			//****
 }
@@ -73,9 +73,9 @@ var Transform = function(type, ...input)
 {
 	this.dirty = true;
 
-  this.pos = vec2.create();
-  this.oldPos = vec2.create();
-  this.scale = vec2.create();
+  	this.pos = vec2.create();
+  	this.oldPos = vec2.create();
+  	this.scale = vec2.create();
 
 	vec2.set(this.pos, 0, 0);
 	vec2.set(this.oldPos, 0, 0);
@@ -124,11 +124,9 @@ var Text = function(text, fontSize, color, maxWidth, textAlign, rows, ...input)
 	this.rows = rows;
 	this.maxWidth = maxWidth;
 
-	//var borderWidth = (input.length > 0) ? input[0] : 0;
 	var borderColor = (input.length > 0) ? input[0] : color;
 	var backColor = (input.length > 1) ? input[1] : "transparent";
 
-	//this.borderWidth = borderWidth;
 	this.borderColor = borderColor;
 	this.backColor = backColor;
 
@@ -157,12 +155,12 @@ var Text = function(text, fontSize, color, maxWidth, textAlign, rows, ...input)
 
 var Physics = function(...input)
 {
-  this.vel = vec2.create();
+  	this.vel = vec2.create();
 
-  this.speed = (input.length > 0) ? input[0] : 2.2;
-  this.maxSpeed = (input.length > 1) ? input[1] : 4.0;
+  	this.speed = (input.length > 0) ? input[0] : 2.2;
+  	this.maxSpeed = (input.length > 1) ? input[1] : 4.0;
 	vec2.copy(this.vel, ((input.length > 2) ? input[2] : [0, 0]));
-  this.friction = (input.length > 3) ? input[3] : false;
+  	this.friction = (input.length > 3) ? input[3] : false;
 }
 
 var Behavior = function(update, init)
@@ -224,7 +222,7 @@ function getObjectByName(name)
 
 function AddObject(shader, obj)
 {
-	console.log("Adding Object: " + obj.name);
+	//console.log("Adding Object: " + obj.name);
 
 	if(obj.collider != null)
 	{

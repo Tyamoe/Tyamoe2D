@@ -16,7 +16,6 @@ var Interactable = function(lFunc, rFunc, hFunc)
 function ui()
 {
 	input();
-	//audio
 }
 
 function input()

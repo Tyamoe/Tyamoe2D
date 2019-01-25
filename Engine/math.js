@@ -10,17 +10,17 @@ function degToRad(d)
 
 function clamp(num, min, max) 
 {
-  return num <= min ? min : num >= max ? max : num;
+ 	return num <= min ? min : num >= max ? max : num;
 }
 
 function rand(min, max) 
 {
-  return Math.random() * (max - min) + min;
+  	return Math.random() * (max - min) + min;
 }
 
 function randEven(min, max)
 {
-  return Math.floor((Math.random() * (max - min) / 2) + min) * 2;
+  	return Math.floor((Math.random() * (max - min) / 2) + min) * 2;
 }
 
 function distPointToRect(p, rc, rs)
@@ -51,7 +51,7 @@ function convertScreenToWorld(screenCoords)
 	var aspectRatio = canvas.width / canvas.height;
 	mat4.ortho(proj, -aspectRatio, aspectRatio, -1, 1, -1, 1);
 
-  var x = 2.0 * screenCoords[0] / canvas.width - 1;
+  	var x = 2.0 * screenCoords[0] / canvas.width - 1;
 	var y = -2.0 * screenCoords[1] / canvas.height + 1;
 
 	mat4.multiply(proj, proj, manager.camera.view);
@@ -65,7 +65,6 @@ function convertScreenToWorld(screenCoords)
 	return point3D;
 }
 
-/*function point2D get2dPoint(Point3D point3D, Matrix viewMatrix, Matrix projectionMatrix, int width, int height)*/
 function convertWorldToScreen(worldCoords) 
 {
 	var point3D = vec3.create();
@@ -78,16 +77,14 @@ function convertWorldToScreen(worldCoords)
 
 	mat4.multiply(proj, proj, manager.camera.view);
 
-      //transform world to clipping coordinates
 	vec3.transformMat4(point3D, point3D, proj);
 
-  var winX = Math.round(((point3D[0] + 1) / 2.0) * canvas.width);
-      //we calculate -point3D.getY() because the screen Y axis is
-      //oriented top->down 
-  var winY = Math.round(((1 - point3D[1] / 2.0) * canvas.height));
+  	var winX = Math.round(((point3D[0] + 1) / 2.0) * canvas.width);
+
+  	var winY = Math.round(((1 - point3D[1] / 2.0) * canvas.height));
 
 	var point2D = vec2.create();
 	vec2.set(point2D, winX, winY); 
 
-  return point2D;
+  	return point2D;
 }

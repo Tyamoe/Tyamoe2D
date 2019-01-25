@@ -5,19 +5,19 @@ var canny = null;
 
 window.onload = function()
 {
-  var background = document.getElementById("background");
-  var height = background.clientHeight * 0.80;
-  var width = height * 0.5625;
+  	var background = document.getElementById("background");
+  	var height = background.clientHeight * 0.80;
+  	var width = height * 0.5625;
 
-  var offsetLeft = width;
-  var offsetTop = background.clientHeight * 0.1;
+  	var offsetLeft = width;
+  	var offsetTop = background.clientHeight * 0.1;
 
-  var iCanvas = document.createElement('canvas');
+  	var iCanvas = document.createElement('canvas');
 	iCanvas.id = 'flappyCanvas';
 	iCanvas.setAttribute("width", "" + width);
 	iCanvas.setAttribute("height", "" + height);
 
-  canny = document.createElement('canvas');
+  	canny = document.createElement('canvas');
 	canny.id = 'gagasa';
 	canny.setAttribute("width", "" + 100);
 	canny.setAttribute("height", "" + 100);

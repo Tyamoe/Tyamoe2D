@@ -7,6 +7,42 @@ var Shader = function(name, program)
   this.count = 0;
 }
 
+function makeShader2(shaderName)
+{
+  var fragmentShader = loadShader(shaderName + "-fs.fs");
+
+  var program = gl.createProgram();
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) 
+  {
+    console.error('ERROR linking program!', gl.getProgramInfoLog(program));
+    return;
+  }
+  gl.validateProgram(program);
+  if (!gl.getProgramParameter(program, gl.VALIDATE_STATUS)) 
+  {
+    console.error('ERROR validating program!', gl.getProgramInfoLog(program));
+    return;
+  }
+
+  program.projMatrixUniform = gl.getUniformLocation(program, "projMatrix");
+  program.modelMatrixUniform = gl.getUniformLocation(program, "modelMatrix");
+  program.viewMatrixUniform = gl.getUniformLocation(program, "viewMatrix");
+  program.tint = gl.getUniformLocation(program, "tint");
+  program.color = gl.getUniformLocation(program, "color");
+  program.lightData = gl.getUniformLocation(program, "lightData");
+  program.occluderData = gl.getUniformLocation(program, "occluderData");
+  program.time = gl.getUniformLocation(program, "time");
+  program.radius = gl.getUniformLocation(program, "radius");
+  program.res = gl.getUniformLocation(program, "res");
+  program.lightpos = gl.getUniformLocation(program, "lightpos");
+
+  program.bufferTexture = gl.getUniformLocation(program, "bufferTexture");
+
+  return program;
+}
+
 function makeShader(shaderName)
 {
   var vertexShader = loadShader(shaderName + "-vs.vs");
@@ -87,25 +123,17 @@ function shaderAddObject(shader, obj)
   obj.mesh.AttrPosition = gl.getAttribLocation(shader.program, 'vertPosition');
   obj.mesh.AttrTexCoords = gl.getAttribLocation(shader.program, 'vertTexCoord');
 
-  if(obj.name == "torch")
-  {
-    console.log("Shader: " + shader.name);
-    console.log(obj);
-    console.log("vertSize: " + obj.mesh.vertSize);
-    console.log("Attr: " + obj.mesh.AttrPosition + " " + obj.mesh.AttrTexCoords);
-  }
-
   gl.bindVertexArray(obj.mesh.VAO);
 
   if(obj.mesh.AttrPosition != -1)
   {
     gl.vertexAttribPointer(
-      obj.mesh.AttrPosition,        // Attribute location
-      obj.mesh.posSize,                          // Number of elements per attribute
-      gl.FLOAT,                   // Type of elements
+      obj.mesh.AttrPosition, 
+      obj.mesh.posSize,    
+      gl.FLOAT,     
       gl.FALSE,
-      obj.mesh.vertSize * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-      0                           // Offset from the beginning of a single vertex to this attribute
+      obj.mesh.vertSize * Float32Array.BYTES_PER_ELEMENT,
+      0 
     );
 
     gl.enableVertexAttribArray(obj.mesh.AttrPosition);
@@ -114,12 +142,12 @@ function shaderAddObject(shader, obj)
   if(obj.mesh.AttrTexCoords != -1)
   {
     gl.vertexAttribPointer(
-       obj.mesh.AttrTexCoords,       // Attribute location
-      2,                          // Number of elements per attribute
-      gl.FLOAT,                   // Type of elements
+       obj.mesh.AttrTexCoords,
+      2,     
+      gl.FLOAT,
       gl.FALSE,
-       obj.mesh.vertSize * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-      obj.mesh.posSize * Float32Array.BYTES_PER_ELEMENT // Offset from the beginning of a single vertex to this attribute
+       obj.mesh.vertSize * Float32Array.BYTES_PER_ELEMENT,
+      obj.mesh.posSize * Float32Array.BYTES_PER_ELEMENT
     );
 
     gl.enableVertexAttribArray(obj.mesh.AttrTexCoords);
@@ -138,12 +166,12 @@ function applyAttributes(mesh)
   if(mesh.AttrPosition != -1)
   {
     gl.vertexAttribPointer(
-      mesh.AttrPosition,        // Attribute location
-      2,                          // Number of elements per attribute
-      gl.FLOAT,                   // Type of elements
+      mesh.AttrPosition,
+      2,                      
+      gl.FLOAT,                  
       gl.FALSE,
-      mesh.vertSize * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-      0                           // Offset from the beginning of a single vertex to this attribute
+      mesh.vertSize * Float32Array.BYTES_PER_ELEMENT,
+      0      
     );
 
     gl.enableVertexAttribArray(mesh.AttrPosition);
@@ -152,12 +180,12 @@ function applyAttributes(mesh)
   if(mesh.AttrTexCoords != -1)
   {
     gl.vertexAttribPointer(
-      mesh.AttrTexCoords,       // Attribute location
-      2,                          // Number of elements per attribute
-      gl.FLOAT,                   // Type of elements
+      mesh.AttrTexCoords,
+      2,              
+      gl.FLOAT,                
       gl.FALSE,
-      mesh.vertSize * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-      2 * Float32Array.BYTES_PER_ELEMENT // Offset from the beginning of a single vertex to this attribute
+      mesh.vertSize * Float32Array.BYTES_PER_ELEMENT,
+      2 * Float32Array.BYTES_PER_ELEMENT
     );
 
     gl.enableVertexAttribArray(mesh.AttrTexCoords);
@@ -166,12 +194,12 @@ function applyAttributes(mesh)
   if(mesh.AttrColor != -1)
   {
     gl.vertexAttribPointer(
-      meshbj.AttrColor,       // Attribute location
-      3,                          // Number of elements per attribute
-      gl.FLOAT,                   // Type of elements
+      meshbj.AttrColor,       
+      3,                         
+      gl.FLOAT,                  
       gl.FALSE,
-      8 * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-      5 * Float32Array.BYTES_PER_ELEMENT // Offset from the beginning of a single vertex to this attribute
+      8 * Float32Array.BYTES_PER_ELEMENT, 
+      5 * Float32Array.BYTES_PER_ELEMENT 
     );
 
     gl.enableVertexAttribArray(mesh.AttrColor);
@@ -180,7 +208,10 @@ function applyAttributes(mesh)
 
 function setMatrixUniforms(shader, obj) 
 {
-  gl.uniformMatrix3fv(shader.modelMatrixUniform, false, obj.transform.modelMatrix);
+  if(shader.modelMatrixUniform != null)
+  {
+    gl.uniformMatrix3fv(shader.modelMatrixUniform, false, obj.transform.modelMatrix);
+  }
 
   if(shader.tint != null)
   {
@@ -211,6 +242,11 @@ function setMatrixUniforms(shader, obj)
   {
     var p = convertWorldToScreen([obj.transform.pos[0], obj.transform.pos[1]]); 
     gl.uniform2fv(shader.lightpos, new Float32Array([p[0], p[1]]));
+  }
+
+  if(shader.time != null)
+  {
+    gl.uniform1f(shader.time, manager.time);
   }
 }
 

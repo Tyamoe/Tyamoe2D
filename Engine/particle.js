@@ -34,14 +34,12 @@ function renderParticles(emitter)
   gl.useProgram(currProg.program);
       
   gl.bindVertexArray(emitter.elements.VAO);
-  //console.log("Particles: " + currProg.name);
 
   gl.uniformMatrix4fv(currProg.program.projMatrixUniform, false, manager.camera.projMatrix);
   gl.uniformMatrix4fv(currProg.program.viewMatrixUniform, false, manager.camera.view);
 
   for(var i = 0; i < emitter.size.length; i++)
   {
-    // Pos, Color, 
     if(emitter.reconfigure)
     {
       var offsetx = Math.random() * emitter.range - (emitter.range / 2); 
@@ -57,8 +55,6 @@ function renderParticles(emitter)
       emitter.color[i][0] = r;
       emitter.color[i][1] = g;
       emitter.color[i][2] = b;
-
-      //console.log(emitter.color);
     }
 
     mat3.identity(emitter.modelMatrix);
@@ -70,6 +66,5 @@ function renderParticles(emitter)
     gl.uniform4fv(currProg.program.color, new Float32Array([emitter.color[i][0], emitter.color[i][1], emitter.color[i][2], 1.0]));
     
     gl.drawElements(gl.TRIANGLES, emitter.elements.indexBuffer.length, gl.UNSIGNED_SHORT, 0);
-  
   }
 }

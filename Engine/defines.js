@@ -111,6 +111,7 @@ var shaderColor = null;
 var shaderMask = null;
 var shaderShadow = null;
 var shaderParticles = null;
+var shaderSchmoke = null;
 
 var ShaderType = 
 {
@@ -120,6 +121,7 @@ var ShaderType =
   MASK: 3,
   SHADOW: 4,
   PARTICLES: 5,
+  SCHMOKE: 6,
 };
 
 var CornerTopLEFT  = [];
@@ -143,7 +145,7 @@ function InitStuff()
   viewWidth = Math.abs(CornerTopLEFT[0]) + Math.abs(CornerBottomRIGHT[0]);
   viewHeight = Math.abs(CornerTopLEFT[1]) + Math.abs(CornerBottomRIGHT[1]);
 
-  console.log("viewWidth: " + viewWidth + " | viewHeight: " + viewHeight);
+  //console.log("viewWidth: " + viewWidth + " | viewHeight: " + viewHeight);
 
   shaderTexture = new Shader("Texture", makeShader("texture"));
   shaderLight = new Shader("Light", makeShader("light"));
@@ -151,6 +153,7 @@ function InitStuff()
   shaderMask = new Shader("Mask", makeShader("mask"));
   shaderShadow = new Shader("Shadow", makeShader("shadow"));
   shaderParticles = new Shader("Particles", makeShader("particles"));
+  shaderSchmoke = new Shader("Schmoke", makeShader2("fog"));
 
   shaderAdd(shaderTexture);
   shaderAdd(shaderLight);
@@ -158,4 +161,5 @@ function InitStuff()
   shaderAdd(shaderMask);
   shaderAdd(shaderShadow);
   shaderAdd(shaderParticles);
+  shaderAdd(shaderSchmoke);
 }

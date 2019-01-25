@@ -70,10 +70,6 @@ function handleMouseDown(event)
 
   var s = convertScreenToWorld([x, y]);
 
-
-  /*vec2.copy(GameObjects[getObjectByName("light3")].transform.pos, s);
-  GameObjects[getObjectByName("light3")].transform.dirty = true;*/
-//manager.camera.update = [updateFuncFollowPlayerCamera];
   console.log("Canvas: " +[canvas.width ,canvas.height]);
   console.log("Screen: " +[x,y]);
   console.log("World: " + s);
@@ -89,19 +85,16 @@ function handleMouseUp(event)
 
   if(event.button == 0)
   {
-    //manager.mouse.left.pressed = true;
     manager.mouse.left.current = false;  
     manager.mouse.left.released = true;  
   }
   else if(event.button == 1)
   {
-    //manager.mouse.middle.pressed = true;
     manager.mouse.middle.current = false;  
     manager.mouse.middle.released = true;  
   }
   else if(event.button == 2)
   {
-    //manager.mouse.right.pressed = true;
     manager.mouse.right.current = false;  
     manager.mouse.right.released = true;  
   }
@@ -114,7 +107,7 @@ function handleMouseMove(event)
     return;
   }
   
-  var rect = canvas.getBoundingClientRect();  // absolute position of canvas
+  var rect = canvas.getBoundingClientRect();
 
   var x = event.clientX - rect.left;
   var y = event.clientY - rect.top;
@@ -160,11 +153,7 @@ function handleKeyDown(event)
   	for(var i = 0; i < GameObjects.length; i++)
   	{
   		console.log(GameObjects[i]);
-  	}/*
-    for(var i = 0; i < shaders.length; i++)
-    {
-      console.log(shaders[i]);
-    }*/
+  	}
   }
 
   if(key == "T")

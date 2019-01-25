@@ -51,23 +51,23 @@ function makeMesh()
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(inds), gl.STATIC_DRAW);
 
   gl.vertexAttribPointer(
-    0,        // Attribute location
-    2,                          // Number of elements per attribute
-    gl.FLOAT,                   // Type of elements
+    0, 
+    2, 
+    gl.FLOAT, 
     gl.FALSE,
-    4 * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-    0                           // Offset from the beginning of a single vertex to this attribute
+    4 * Float32Array.BYTES_PER_ELEMENT, 
+    0  
   );
 
   gl.enableVertexAttribArray(0);
  
   gl.vertexAttribPointer(
-    1,       // Attribute location
-    2,                          // Number of elements per attribute
-    gl.FLOAT,                   // Type of elements
+    1, 
+    2, 
+    gl.FLOAT, 
     gl.FALSE,
-    4 * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-    2 * Float32Array.BYTES_PER_ELEMENT // Offset from the beginning of a single vertex to this attribute
+    4 * Float32Array.BYTES_PER_ELEMENT, 
+    2 * Float32Array.BYTES_PER_ELEMENT 
   );
 
   gl.enableVertexAttribArray(1);
@@ -114,12 +114,12 @@ var meshLight = function()
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(inds), gl.STATIC_DRAW);
 
   gl.vertexAttribPointer(
-    0,        // Attribute location
-    2,                          // Number of elements per attribute
-    gl.FLOAT,                   // Type of elements
+    0, 
+    2, 
+    gl.FLOAT, 
     gl.FALSE,
-    2 * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-    0                           // Offset from the beginning of a single vertex to this attribute
+    2 * Float32Array.BYTES_PER_ELEMENT,  
+    0      
   );
 
   gl.enableVertexAttribArray(0);
@@ -167,23 +167,23 @@ var meshHeavy = function()
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(inds), gl.STATIC_DRAW);
 
   gl.vertexAttribPointer(
-    0,        // Attribute location
-    2,                          // Number of elements per attribute
-    gl.FLOAT,                   // Type of elements
+    0, 
+    2, 
+    gl.FLOAT, 
     gl.FALSE,
-    4 * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-    0                           // Offset from the beginning of a single vertex to this attribute
+    4 * Float32Array.BYTES_PER_ELEMENT, 
+    0 
   );
 
   gl.enableVertexAttribArray(0);
  
   gl.vertexAttribPointer(
-    1,       // Attribute location
-    2,                          // Number of elements per attribute
-    gl.FLOAT,                   // Type of elements
+    1, 
+    2,    
+    gl.FLOAT,  
     gl.FALSE,
-    4 * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-    2 * Float32Array.BYTES_PER_ELEMENT // Offset from the beginning of a single vertex to this attribute
+    4 * Float32Array.BYTES_PER_ELEMENT, 
+    2 * Float32Array.BYTES_PER_ELEMENT 
   );
 
   gl.enableVertexAttribArray(1);

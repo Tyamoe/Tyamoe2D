@@ -16,7 +16,7 @@ var modelCount = 0;
 
 function InitWebGL()
 {
-	canvas = document.getElementById('breakerCanvas');
+	canvas = document.getElementById('game-surface');
 	gl = canvas.getContext('webgl2');
 
 	if (!gl) 
@@ -34,7 +34,7 @@ function InitWebGL()
   
 	gl.enable(gl.BLEND);
 	gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-	gl.clearColor(0.1, 0.1, 0.1, 1.0);	  //Set clear color
+	gl.clearColor(0.6, 0.4, 0.4, 1.0);	  //Set clear color
 
 	WebGlInitialized = true;
 

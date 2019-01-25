@@ -4,11 +4,9 @@ var effectFuncParticlesTheme = function(effector, other)
 	{
 		return;
 	}
-	//console.log("Effector: " + effector.material.id);
 	
 	if(effector.material.id == MaterialType.DIRT)
 	{
-		//[0.24, 0.47], [0.14, 0.27], [0.0, 0.01]
 		other.particles.themeR = [0.24, 0.47];
 		other.particles.themeG = [0.14, 0.27];
 		other.particles.themeB = [0.0, 0.01];

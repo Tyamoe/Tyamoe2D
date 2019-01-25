@@ -18,11 +18,11 @@ var Sprite = function(texture, ...input)
 
   this.index = 0;
 
-  this.UVs = [0, 0, 0, 0, 0, 0, 0, 0]; //!!!!!!!!!!!!!!!!!!!!
+  this.UVs = [0, 0, 0, 0, 0, 0, 0, 0];
 
   this.pickID;
 
-  this.tint = [1.0, 1.0, 1.0, 1.0];
+  this.tint = [1.0, 1.0, 0.0, 1.0];
   this.alpha = 1.0;
 
   this.layer = 1;
@@ -122,7 +122,7 @@ function makeTexture(name)
   const border = 0;
   const srcFormat = gl.RGBA;
   const srcType = gl.UNSIGNED_BYTE;
-  const pixel = new Uint8Array([0, 0, 255, 255]);  // opaque blue
+  const pixel = new Uint8Array([0, 0, 255, 255]);
   gl.texImage2D(gl.TEXTURE_2D, level, internalFormat,
                 width, height, border, srcFormat, srcType,
                 pixel);
@@ -137,13 +137,10 @@ function makeTexture(name)
 
     if (isPowerOf2(image.width) && isPowerOf2(image.height)) 
     {
-       // Yes, it's a power of 2. Generate mips.
        gl.generateMipmap(gl.TEXTURE_2D);
     } 
     else 
     {
-       // No, it's not a power of 2. Turn of mips and set
-       // wrapping to clamp to edge
        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);

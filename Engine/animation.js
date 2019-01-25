@@ -300,23 +300,3 @@ function getUV(obj)
 
 	return [u, v, u2, v2];
 }
-
-function getUV1(animation)
-{
-	var uSize = 1.0 / animation.cols;
-	var vSize = 1.0 / animation.rows;
-
-	var u = uSize * (animation.Index % animation.cols);
-	var v = vSize * (animation.Index / animation.cols);
-
-	if(animation.Index % 2 != 0)
-	{
-		v -= 0.25;
-	}
-	/*else if(animation.Index == 0)
-	{
-		v += 0.5;
-	}*/
-
-	return [u, v, uSize, vSize];
-}

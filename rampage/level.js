@@ -1,7 +1,5 @@
 function makeLevel()
 {
-	console.log("Loading Level");
-
 	InitStuff();
 	InitGlobals();
 	

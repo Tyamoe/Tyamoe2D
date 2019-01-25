@@ -41,7 +41,7 @@ window.onload = function()
 
 function errorHandler() 
 {
-	alert('mozfullscreenerror');
+   alert('mozfullscreenerror');
 }
 document.documentElement.addEventListener('mozfullscreenerror', errorHandler, false);
 

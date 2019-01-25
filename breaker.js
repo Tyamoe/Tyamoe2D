@@ -3,14 +3,14 @@ var WebGlInitialized = false;
 
 window.onload = function()
 {
-  var background = document.getElementById("background");
-  var height = background.clientHeight * 0.70;
-  var width = height * 1.2;
+  	var background = document.getElementById("background");
+  	var height = background.clientHeight * 0.70;
+  	var width = height * 1.2;
 
-  var offsetLeft = background.clientHeight * 0.2;
-  var offsetTop = background.clientHeight * 0.2;
+  	var offsetLeft = background.clientHeight * 0.2;
+  	var offsetTop = background.clientHeight * 0.2;
 
-  var iCanvas = document.createElement('canvas');
+  	var iCanvas = document.createElement('canvas');
 	iCanvas.id = 'breakerCanvas';
 	iCanvas.setAttribute("width", "" + width);
 	iCanvas.setAttribute("height", "" + height);
