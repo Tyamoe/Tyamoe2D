@@ -25,7 +25,6 @@ function render()
 		
   			gl.useProgram(currProg.program);
   			setGlobalUniforms(currProg.program);
-			ccc++;
 		}
 
 		if(obj.transform.dirty)

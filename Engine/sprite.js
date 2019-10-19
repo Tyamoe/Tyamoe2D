@@ -22,7 +22,7 @@ var Sprite = function(texture, ...input)
 
   this.pickID;
 
-  this.tint = [1.0, 1.0, 0.0, 1.0];
+  this.tint = [1.0, 1.0, 1.0, 1.0];
   this.alpha = 1.0;
 
   this.layer = 1;

@@ -95,9 +95,7 @@ var VectorUP    = [ 0,  1 ];
 var VectorDOWN  = [ 0, -1 ];
 
 var texturePath = "https://tyamoe.com/Tyamoe2D/images/";
-
 var audioPath = "https://tyamoe.com/Tyamoe2D/audio/";
-
 var shaderPath = "https://tyamoe.com/Tyamoe2D/shaders/";
 
 var Lights = [];
@@ -111,7 +109,6 @@ var shaderColor = null;
 var shaderMask = null;
 var shaderShadow = null;
 var shaderParticles = null;
-var shaderSchmoke = null;
 
 var ShaderType = 
 {
@@ -121,7 +118,6 @@ var ShaderType =
   MASK: 3,
   SHADOW: 4,
   PARTICLES: 5,
-  SCHMOKE: 6,
 };
 
 var CornerTopLEFT  = [];
@@ -153,7 +149,6 @@ function InitStuff()
   shaderMask = new Shader("Mask", makeShader("mask"));
   shaderShadow = new Shader("Shadow", makeShader("shadow"));
   shaderParticles = new Shader("Particles", makeShader("particles"));
-  shaderSchmoke = new Shader("Schmoke", makeShader2("fog"));
 
   shaderAdd(shaderTexture);
   shaderAdd(shaderLight);
@@ -161,5 +156,4 @@ function InitStuff()
   shaderAdd(shaderMask);
   shaderAdd(shaderShadow);
   shaderAdd(shaderParticles);
-  shaderAdd(shaderSchmoke);
 }

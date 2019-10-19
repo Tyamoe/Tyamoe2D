@@ -38,8 +38,8 @@ var Animation = function(cols, rows, dimension, loop, duration, ...input)
 	this.cols = cols;
 	this.rows = rows;
 
-  this.width = dimension[0];
-  this.height = dimension[1];
+  	this.width = dimension[0];
+  	this.height = dimension[1];
 
 	this.looping = loop;
 	this.running = false;
